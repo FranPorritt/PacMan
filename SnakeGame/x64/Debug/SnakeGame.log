@@ -1,0 +1,26 @@
+﻿  Game.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Game.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Ghosts.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(174): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(175): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(182): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(183): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Walls.cpp
+  Generating Code...
+  SnakeGame.vcxproj -> F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\x64\Debug\SnakeGame.exe
