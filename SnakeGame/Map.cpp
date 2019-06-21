@@ -139,23 +139,3 @@ bool Map::GetWallRight()
 {
 	return wallRight;
 }
-
-sf::Vector2f Map::getBlinky()
-{
-	return blinkyScatterTile;
-}
-
-sf::Vector2f Map::getPinky()
-{
-	return pinkyScatterTile;
-}
-
-sf::Vector2f Map::getInky()
-{
-	return inkyScatterTile;
-}
-
-sf::Vector2f Map::getClyde()
-{
-	return clydeScatterTile;
-}

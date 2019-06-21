@@ -42,10 +42,10 @@ void Game::Play(sf::RenderWindow& window)
 	playerSpawn = map->GetPlayerSpawn();
 	Player* player = new Player(10.0f, sf::Color::Yellow, playerSpawn);	
 
-	//ghosts.push_back(new Blinky(10.0f, sf::Color::Red, { 275.0f, 365.0f }));
-	/*ghosts.push_back(new Pinky(10.0f, sf::Color(255, 182, 193), { 400.0f, 440.0f }));
-	ghosts.push_back(new Inky(10.0f, sf::Color::Cyan, { 350.0f, 440.0f }));
-	ghosts.push_back(new Clyde(10.0f, sf::Color(255, 69, 0), { 450.0f, 440.0f }));*/
+	ghosts.push_back(new Blinky(10.0f, sf::Color::Red, { 275.0f, 365.0f }, { 0,0 }));
+	ghosts.push_back(new Pinky(10.0f, sf::Color(255, 182, 193), { 400.0f, 440.0f }, { 820,0 }));
+	ghosts.push_back(new Inky(10.0f, sf::Color::Cyan, { 350.0f, 440.0f }, { 0,960 }));
+	ghosts.push_back(new Clyde(10.0f, sf::Color(255, 69, 0), { 450.0f, 440.0f }, { 820,960 }));
 
 	while (window.isOpen())
 	{
@@ -92,7 +92,8 @@ void Game::Play(sf::RenderWindow& window)
 			}
 			else
 			{
-				ghost->Scatter(TESTTARGET);
+				scatterTile = ghost->GetScatterTile();
+				ghost->Scatter(scatterTile);
 			}
 			ghost->Pathfinding();
 			ghost->Move();	
@@ -109,5 +110,4 @@ void Game::Play(sf::RenderWindow& window)
 		window.display();
 		window.clear();
 	}
-
 }

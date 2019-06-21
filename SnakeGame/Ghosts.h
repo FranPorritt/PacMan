@@ -42,5 +42,6 @@ public:
 	// Need a respawn too
 
 	sf::Vector2f GetGhostPos();
+	sf::Vector2f GetScatterTile();
 };
 

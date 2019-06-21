@@ -20,8 +20,7 @@ protected:
 	std::vector<Ghosts*>ghosts;
 	sf::Vector2f currentGhostPos;
 	int behaviourTimer = 0;
-
-	sf::Vector2f TESTTARGET = { 0,0 };
+	sf::Vector2f scatterTile;
 
 public:
 	Game();

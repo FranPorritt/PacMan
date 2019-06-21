@@ -76,11 +76,6 @@ protected:
 	bool wallLeft = true;
 	bool wallRight = true;
 
-	sf::Vector2f blinkyScatterTile = mapPos[0][0];
-	sf::Vector2f pinkyScatterTile = mapPos[0][32];
-	sf::Vector2f inkyScatterTile = mapPos[36][0];
-	sf::Vector2f clydeScatterTile = mapPos[36][32];
-
 public:
 	Map();
 	~Map();
@@ -97,10 +92,5 @@ public:
 	bool GetWallBelow();
 	bool GetWallLeft();
 	bool GetWallRight();
-
-	sf::Vector2f getBlinky();
-	sf::Vector2f getPinky();
-	sf::Vector2f getInky();
-	sf::Vector2f getClyde();
 };
 

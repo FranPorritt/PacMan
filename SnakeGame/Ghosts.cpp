@@ -195,3 +195,8 @@ sf::Vector2f Ghosts::GetGhostPos()
 {
 	return ghostPos;
 }
+
+sf::Vector2f Ghosts::GetScatterTile()
+{
+	return scatterTile;
+}
