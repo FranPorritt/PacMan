@@ -164,6 +164,7 @@
     <ClCompile Include="Pinky.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Points.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="Walls.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="Pinky.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Points.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Walls.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

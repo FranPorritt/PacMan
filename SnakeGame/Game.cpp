@@ -42,9 +42,10 @@ void Game::Play(sf::RenderWindow& window)
 	playerSpawn = map->GetPlayerSpawn();
 	Player* player = new Player(10.0f, sf::Color::Yellow, playerSpawn);	
 
-	ghosts.push_back(new Blinky(10.0f, sf::Color::Red, { 275.0f, 365.0f }, { 0,0 }));
+	ghosts.push_back(new Blinky(10.0f, sf::Color::Red, { 400.0f, 365.0f }, { 0,0 }));
+	blinky = ghosts[0];
 	ghosts.push_back(new Pinky(10.0f, sf::Color(255, 182, 193), { 400.0f, 440.0f }, { 820,0 }));
-	ghosts.push_back(new Inky(10.0f, sf::Color::Cyan, { 350.0f, 440.0f }, { 0,960 }));
+	ghosts.push_back(new Inky(10.0f, sf::Color::Cyan, { 350.0f, 440.0f }, { 0,960 }, blinky)); //BROKEN
 	ghosts.push_back(new Clyde(10.0f, sf::Color(255, 69, 0), { 450.0f, 440.0f }, { 820,960 }));
 
 	while (window.isOpen())
@@ -61,16 +62,18 @@ void Game::Play(sf::RenderWindow& window)
 				break;
 			}
 		}
-		while (clock.getElapsedTime().asMilliseconds() < 200);
+		while (clock.getElapsedTime().asMilliseconds() < 250);
 		clock.restart();
 
-		map->Render(window);
+		map->Render(window);		// Renders walls and pellets
+		map->Update();
 		player->Render(window);
 		player->Move();
 
 		// Player collision checks
 		currentPlayerPos = player->GetPlayerPos();
 		map->CollisionChecks(currentPlayerPos);
+		map->PelletCollisions(currentPlayerPos);
 		player->SetCanMoveDown(map->GetWallBelow());
 		player->SetCanMoveUp(map->GetWallAbove());
 		player->SetCanMoveLeft(map->GetWallLeft());
@@ -86,25 +89,17 @@ void Game::Play(sf::RenderWindow& window)
 			ghost->SetCanMoveLeft(map->GetWallLeft());
 			ghost->SetCanMoveRight(map->GetWallRight());
 			
-			if (behaviourTimer < 100)
+			if (map->GetGhostsFright())
 			{
-				ghost->Chase(currentPlayerPos);	
+				ghost->SetFrightenedTrue();
 			}
 			else
 			{
-				scatterTile = ghost->GetScatterTile();
-				ghost->Scatter(scatterTile);
-			}
-			ghost->Pathfinding();
-			ghost->Move();	
+				ghost->SetFrightenedFalse();
+			}			
+			ghost->Update(currentPlayerPos);
 			ghost->Render(window);		
 		}
-		
-		if (behaviourTimer > 150)
-		{
-			behaviourTimer = 0;
-		}
-		behaviourTimer++;
 
 		points->DisplayScore(window);
 		window.display();

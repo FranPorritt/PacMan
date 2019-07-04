@@ -1,9 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include<time.h> 
 #include "Game.h"
 
 int main()
 {
+	srand(time(0));
+
 	sf::RenderWindow window(sf::VideoMode(820, 960), "Pac Man: Francesca Porritt");
 	std::cout << "PacMan: Starting" << std::endl;
 

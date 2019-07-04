@@ -1,7 +1,20 @@
 ﻿  Game.cpp
 F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Game.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  main.cpp
-  Map.cpp
-  Pinky.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Game.cpp(47): error C2664: 'Inky::Inky(const Inky &)': cannot convert argument 5 from '_Ty' to 'Blinky &'
+          with
+          [
+              _Ty=Ghosts *
+          ]
+  Inky.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Inky.cpp(5): error C2530: 'Inky::blinky': references must be initialized
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Inky.cpp(37): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Inky.cpp(38): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
   Generating Code...
-  SnakeGame.vcxproj -> F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\x64\Debug\SnakeGame.exe

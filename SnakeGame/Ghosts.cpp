@@ -1,5 +1,6 @@
 #include "Ghosts.h"
 #include <cmath>
+#include <iostream>
 
 Ghosts::Ghosts(float ghostRadiusArg, sf::Color ghostColorArg, sf::Vector2f ghostPosArg, sf::Vector2f scatterTileArg) :
 	ghostRadius(ghostRadiusArg), ghostColor(ghostColorArg), ghostPos(ghostPosArg), scatterTile(scatterTileArg)
@@ -8,6 +9,46 @@ Ghosts::Ghosts(float ghostRadiusArg, sf::Color ghostColorArg, sf::Vector2f ghost
 
 Ghosts::~Ghosts()
 {
+}
+
+void Ghosts::Update(sf::Vector2f& currentPlayerPos)
+{
+	if (isFrightened)
+	{
+		Frightened();
+		std::cout << "Frightened" << std::endl;
+	}
+	else
+	{
+		if (hasLeftHouse) // If ghost has left ghost house
+		{
+			// Switches periodically from chase to scatter
+			if (behaviourTimer < 100)
+			{
+				Chase(currentPlayerPos);
+				std::cout << "Chasing" << std::endl;
+			}
+			else
+			{
+				Scatter(scatterTile);
+				std::cout << "Scattering" << std::endl;
+			}
+		}
+		else
+		{
+			LeaveHouse();
+			// STAGGER LEAVING TIMES
+		}
+	}
+
+	if (behaviourTimer > 150) // Resets behaviour timer after chase-scatter loop
+	{
+		behaviourTimer = 0;
+	}
+	behaviourTimer++;
+
+	Pathfinding();
+	Move();
 }
 
 void Ghosts::Render(sf::RenderWindow& window)
@@ -83,7 +124,8 @@ void Ghosts::Move()
 
 void Ghosts::Pathfinding()
 {
-	if (std::max(abs(xDirVector), abs(yDirVector)) == abs(xDirVector)) // If x position is further than y position
+	// max + abs, makes numbers positive and returns largest
+	if ((std::max(abs(xDirVector), abs(yDirVector))) == abs(xDirVector)) // If x position is further than y position
 	{
 		if (xDirVector > 0)
 		{
@@ -95,13 +137,17 @@ void Ghosts::Pathfinding()
 			{
 				direction = EGhostDirection::eUp;
 			}
+			else if ((canMoveDown) && (direction != EGhostDirection::eUp))
+			{
+				direction = EGhostDirection::eDown;
+			}
 			else if ((canMoveLeft) && (direction != EGhostDirection::eRight))
 			{
 				direction = EGhostDirection::eLeft;
 			}
-			else if ((canMoveDown) && (direction != EGhostDirection::eUp))
+			else
 			{
-				direction = EGhostDirection::eDown;
+				direction = EGhostDirection::eStop;
 			}
 		}
 		else
@@ -114,13 +160,17 @@ void Ghosts::Pathfinding()
 			{
 				direction = EGhostDirection::eDown;
 			}
+			else if ((canMoveUp) && (direction != EGhostDirection::eDown))
+			{
+				direction = EGhostDirection::eUp;
+			}
 			else if ((canMoveRight) && (direction != EGhostDirection::eLeft))
 			{
 				direction = EGhostDirection::eRight;
 			}
-			else if ((canMoveUp) && (direction != EGhostDirection::eDown))
+			else
 			{
-				direction = EGhostDirection::eUp;
+				direction = EGhostDirection::eStop;
 			}
 		}
 	}
@@ -136,13 +186,17 @@ void Ghosts::Pathfinding()
 			{
 				direction = EGhostDirection::eRight;
 			}
+			else if ((canMoveLeft) && (direction != EGhostDirection::eRight))
+			{
+				direction = EGhostDirection::eLeft;
+			}
 			else if ((canMoveUp) && (direction != EGhostDirection::eDown))
 			{
 				direction = EGhostDirection::eUp;
 			}
-			else if ((canMoveLeft) && (direction != EGhostDirection::eRight))
+			else
 			{
-				direction = EGhostDirection::eLeft;
+				direction = EGhostDirection::eStop;
 			}
 		}
 		else
@@ -155,19 +209,36 @@ void Ghosts::Pathfinding()
 			{
 				direction = EGhostDirection::eRight;
 			}
+			else if ((canMoveLeft) && (direction != EGhostDirection::eRight))
+			{
+				direction = EGhostDirection::eLeft;
+			}
 			else if ((canMoveDown) && (direction != EGhostDirection::eUp))
 			{
 				direction = EGhostDirection::eDown;
 			}
-			else if ((canMoveLeft) && (direction != EGhostDirection::eRight))
+			else
 			{
-				direction = EGhostDirection::eLeft;
+				direction = EGhostDirection::eStop;
 			}
 		}
 	}
 }
 
-void Ghosts::Chase(sf::Vector2f& currentPlayerPos)
+void Ghosts::LeaveHouse()
+{
+	targetPos = { 400.0f, 365.0f };
+
+	xDirVector = targetPos.x - ghostPos.x;
+	yDirVector = targetPos.y - ghostPos.y;
+
+	if (targetPos == ghostPos)
+	{
+		hasLeftHouse = true;
+	}
+}
+
+void Ghosts::Chase(sf::Vector2f & currentPlayerPos)
 {
 	targetPos = currentPlayerPos;
 
@@ -175,7 +246,7 @@ void Ghosts::Chase(sf::Vector2f& currentPlayerPos)
 	yDirVector = targetPos.y - ghostPos.y;
 }
 
-void Ghosts::Scatter(sf::Vector2f& targetTile)
+void Ghosts::Scatter(sf::Vector2f & targetTile)
 {
 	targetPos = targetTile;
 
@@ -185,10 +256,14 @@ void Ghosts::Scatter(sf::Vector2f& targetTile)
 
 void Ghosts::Frightened()
 {
-	// Frightened -- Used by all ghosts -- No target tile, instead each ghost randomly decides which why to go. Turn dark blue and are vunerable to player
-	//
-	// 1. Change colour - Dark Blue
-	// 2. Randomly set direction
+	if (ghostColor != sf::Color::Blue)
+	{
+		defaultColor = ghostColor;
+		ghostColor = frightColor;
+	}
+
+	xDirVector = (rand() % 10) - (rand() % 5);
+	yDirVector = (rand() % 10) - (rand() % 5);
 }
 
 sf::Vector2f Ghosts::GetGhostPos()
@@ -199,4 +274,20 @@ sf::Vector2f Ghosts::GetGhostPos()
 sf::Vector2f Ghosts::GetScatterTile()
 {
 	return scatterTile;
+}
+
+bool Ghosts::GetHouse()
+{
+	return hasLeftHouse;
+}
+
+void Ghosts::SetFrightenedFalse()
+{
+	ghostColor = defaultColor;
+	isFrightened = false;
+}
+
+void Ghosts::SetFrightenedTrue()
+{
+	isFrightened = true;
 }

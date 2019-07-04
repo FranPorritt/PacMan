@@ -19,6 +19,8 @@ protected:
 
 	std::vector<Ghosts*>ghosts;
 	sf::Vector2f currentGhostPos;
+	Blinky& blinky;
+	sf::Vector2f blinkyPos;
 	int behaviourTimer = 0;
 	sf::Vector2f scatterTile;
 

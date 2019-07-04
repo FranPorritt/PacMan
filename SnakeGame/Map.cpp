@@ -43,6 +43,13 @@ void Map::CreateMap(sf::RenderWindow& window)
 				pellet->SetPosition(newPelletPos); // Passes map position to pellet
 				pellets.push_back(pellet);
 			}
+			else if (grid[rowIndex][colIndex] == 4) // Finds power up spaces on grid and creates a new instance of the power up class
+			{
+				PowerUp* powerUp = new PowerUp(8.0f, sf::Color::White);
+				newPowerPos = (mapPos[rowIndex][colIndex]);
+				powerUp->SetPosition(newPowerPos); // Passes map position to powerUp
+				powerUps.push_back(powerUp);
+			}
 		}
 	}
 }
@@ -73,6 +80,19 @@ void Map::Render(sf::RenderWindow& window)
 	for (Pellets* p : pellets)
 	{
 		p->Render(window);
+	}
+
+	for (PowerUp* powerUp : powerUps)
+	{
+		powerUp->Render(window);
+	}
+}
+
+void Map::Update()
+{
+	if (areGhostsFrightened)
+	{
+		GhostsFrightened();
 	}
 }
 
@@ -105,19 +125,50 @@ void Map::CollisionChecks(sf::Vector2f& checkPos)
 		{
 			wallLeft = true;
 		}
-	}
+	}	
+}
 
-	// THIS NEEDS CHANGING -- WILL DETECT GHOSTS COLLISIONS TOO
+void Map::PelletCollisions(sf::Vector2f& checkPos)
+{
 	for (Pellets* p : pellets)
 	{
 		sf::Vector2f pelletPos = p->GetPosition();
 		if (pelletPos == checkPos)
 		{
-			cout << "Collected Pellet" << endl;
 			p->Collected();
 			delete p;
 		}
 	}
+
+	for (PowerUp* powerUp : powerUps)
+	{
+		sf::Vector2f powerPos = powerUp->GetPosition();
+		if (powerPos == checkPos)
+		{
+			cout << "Collected POWER UP" << endl;	
+
+			areGhostsFrightened = true;
+			frightTimer = 0;	// Resets fright timer in case it's already active
+
+			powerUp->Collected();
+			delete powerUp;
+		}
+	}
+}
+
+void Map::GhostsFrightened()
+{
+	if (frightTimer >= frightTime)
+	{
+		areGhostsFrightened = false;
+		frightTimer = 0;
+	}
+	else
+	{
+		areGhostsFrightened = true;
+	}
+
+	frightTimer++;
 }
 
 bool Map::GetWallAbove()
@@ -138,4 +189,9 @@ bool Map::GetWallLeft()
 bool Map::GetWallRight()
 {
 	return wallRight;
+}
+
+bool Map::GetGhostsFright()
+{
+	return areGhostsFrightened;
 }

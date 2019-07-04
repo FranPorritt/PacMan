@@ -4,6 +4,7 @@
 #include <list>
 #include "Walls.h"
 #include "Pellets.h"
+#include "PowerUp.h"
 #include "Player.h"
 #include "Points.h"
 #include "Ghosts.h"
@@ -24,9 +25,9 @@ protected:
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},		//KEY:
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},		// 0 -- Pellet Space
 		{1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1,2,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,1},		// 1 -- Wall
-		{1,0,1,2,2,2,1,0,1,2,2,2,2,1,0,1,2,1,0,1,2,2,2,2,1,0,1,2,2,2,1,0,1},		// 2 -- Empty Space
+		{1,4,1,2,2,2,1,0,1,2,2,2,2,1,0,1,2,1,0,1,2,2,2,2,1,0,1,2,2,2,1,4,1},		// 2 -- Empty Space
 		{1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,1},		// 3 -- Player Spawn
-		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},		// 4 -- Power Up
 		{1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,0,1},
 		{1,0,1,2,2,2,1,0,1,2,1,0,1,2,2,2,2,2,2,2,1,0,1,2,1,0,1,2,2,2,1,0,1},
 		{1,0,1,1,1,1,1,0,1,2,1,0,1,1,1,1,2,1,1,1,1,0,1,2,1,0,1,1,1,1,1,0,1},
@@ -48,7 +49,7 @@ protected:
 		{1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,1,2,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,1},
 		{1,0,1,2,2,2,1,0,1,2,2,2,2,1,0,1,2,1,0,1,2,2,2,2,1,0,1,2,2,2,1,0,1},
 		{1,0,1,1,1,2,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,2,1,1,1,0,1},
-		{1,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,1},
+		{1,4,0,0,1,2,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,1,2,1,0,0,4,1},
 		{1,1,1,0,1,2,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,2,1,0,1,1,1},
 		{2,2,1,0,1,2,1,0,1,2,1,0,1,2,2,2,2,2,2,2,1,0,1,2,1,0,1,2,1,0,1,2,2},
 		{1,1,1,0,1,1,1,0,1,2,1,0,1,1,1,1,2,1,1,1,1,0,1,2,1,0,1,1,1,0,1,1,1},
@@ -63,10 +64,12 @@ protected:
 	sf::Vector2f mapPos[rows][cols];
 	sf::Vector2f newWallPos;
 	sf::Vector2f newPelletPos;
+	sf::Vector2f newPowerPos;
 	sf::Vector2f playerSpawn;
 
 	list<Walls*> walls;
 	list<Pellets*> pellets;
+	list<PowerUp*> powerUps;
 
 	Player* player;
 	Points* points = Points::getInstance();
@@ -75,6 +78,10 @@ protected:
 	bool wallBelow = true;
 	bool wallLeft = true;
 	bool wallRight = true;
+
+	bool areGhostsFrightened = false;
+	int frightTimer = 0;
+	int frightTime = 50;
 
 public:
 	Map();
@@ -85,12 +92,16 @@ public:
 	void CreateMap(sf::RenderWindow& window);
 	sf::Vector2f GetPlayerSpawn();
 	void Render(sf::RenderWindow& window);
+	void Update();
 
 	// Checks around the player for walls and allows movement based on these checks
-	void CollisionChecks(sf::Vector2f& currentPlayerPos); 
+	void CollisionChecks(sf::Vector2f& checkPos); 
+	void PelletCollisions(sf::Vector2f& checkPos);
+	void GhostsFrightened();
 	bool GetWallAbove();
 	bool GetWallBelow();
 	bool GetWallLeft();
 	bool GetWallRight();
+	bool GetGhostsFright();
 };
 
