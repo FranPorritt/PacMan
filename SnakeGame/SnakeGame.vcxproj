@@ -160,11 +160,13 @@
     <ClCompile Include="Inky.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Notes.cpp" />
     <ClCompile Include="Pellets.cpp" />
     <ClCompile Include="Pinky.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Points.cpp" />
     <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Walls.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +182,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Points.h" />
     <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="Walls.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

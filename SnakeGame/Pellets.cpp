@@ -11,7 +11,7 @@ Pellets::~Pellets()
 
 void Pellets::Render(sf::RenderWindow& window)
 {
-	sf::CircleShape pellet(pelletRadius);
+	sf::CircleShape pellet(pelletRadius);		// EXCEPTION BEING THROWN
 	pellet.setOrigin(-7.5, -7.5);
 	pellet.setPosition(pelletPos);
 	pellet.setFillColor(pelletColor);

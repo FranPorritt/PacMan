@@ -1,20 +1,79 @@
-﻿  Game.cpp
-F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Game.cpp(34): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Game.cpp(47): error C2664: 'Inky::Inky(const Inky &)': cannot convert argument 5 from '_Ty' to 'Blinky &'
-          with
-          [
-              _Ty=Ghosts *
-          ]
+﻿  Blinky.cpp
+  Characters.cpp
+  Clyde.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(23,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(23,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(23,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(23,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(23,27): warning C4244:         ]
+  Game.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(24,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(24,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(24,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(24,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Clyde.cpp(24,27): warning C4244:         ]
+  Ghosts.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Game.cpp(89,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(265,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(265,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(265,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(265,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(265,27): warning C4244:         ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(266,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(266,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(266,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(266,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(266,27): warning C4244:         ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(278,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(278,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(278,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(278,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(278,27): warning C4244:         ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(279,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(279,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(279,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(279,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(279,27): warning C4244:         ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(286,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(286,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(286,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(286,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(286,27): warning C4244:         ]
   Inky.cpp
-F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Inky.cpp(5): error C2530: 'Inky::blinky': references must be initialized
-F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Inky.cpp(37): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Inky.cpp(38): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
+  main.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(287,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(287,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(287,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(287,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Ghosts.cpp(287,27): warning C4244:         ]
+  Map.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\main.cpp(8,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Notes.cpp
+  Pellets.cpp
+  Pinky.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Map.cpp(212,42): warning C4267:  '=': conversion from 'size_t' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(35,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(35,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(35,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(35,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(35,27): warning C4244:         ]
+  Player.cpp
+  Points.cpp
+  PowerUp.cpp
+  UI.cpp
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(36,27): warning C4244:  '=': conversion from 'T' to 'int', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(36,27): warning C4244:         with
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(36,27): warning C4244:         [
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(36,27): warning C4244:             T=float
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\Pinky.cpp(36,27): warning C4244:         ]
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(29,38): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(37,35): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(58,35): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(76,34): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(130,54): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(130,36): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(138,36): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  Walls.cpp
   Generating Code...
+F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\SnakeGame\UI.cpp(146,39): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  SnakeGame.vcxproj -> F:\New folder\franp\Documents\Summer Projects\PacMan Git\PacMan\x64\Debug\SnakeGame.exe

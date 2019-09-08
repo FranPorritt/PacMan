@@ -23,7 +23,6 @@ void Points::AddPoints(int item)
 
 void Points::DisplayScore(sf::RenderWindow& window)
 {
-	sf::Font font;
 	if (!font.loadFromFile("ka1.ttf"))
 	{
 		cout << "ERROR" << endl;

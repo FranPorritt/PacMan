@@ -94,6 +94,11 @@ void Map::Update()
 	{
 		GhostsFrightened();
 	}
+
+	if (pellets.empty())
+	{
+		isGameWon = true;
+	}
 }
 
 void Map::CollisionChecks(sf::Vector2f& checkPos)
@@ -136,6 +141,7 @@ void Map::PelletCollisions(sf::Vector2f& checkPos)
 		if (pelletPos == checkPos)
 		{
 			p->Collected();
+			//pellets.erase();		//  THROWS EXCEPTION IMMEDIATELY
 			delete p;
 		}
 	}
@@ -194,4 +200,14 @@ bool Map::GetWallRight()
 bool Map::GetGhostsFright()
 {
 	return areGhostsFrightened;
+}
+
+bool Map::GetGameWon()
+{
+	return isGameWon;
+}
+
+int Map::GetPelletsRemaining()
+{
+	return pelletsRemaining = pellets.size();		// DOESN'T CURRENTLY WORK -- PELLETS AREN'T BEING REMOVED FROM LIST
 }

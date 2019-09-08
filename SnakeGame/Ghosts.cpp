@@ -11,41 +11,74 @@ Ghosts::~Ghosts()
 {
 }
 
-void Ghosts::Update(sf::Vector2f& currentPlayerPos)
+void Ghosts::Update(sf::Vector2f& currentPlayerPos, sf::Vector2f& targetTile)
 {
-	if (isFrightened)
+	switch (currentState)
 	{
+	case ghostState::LeavingHouse:
+		LeaveHouse();
+		break;
+
+	case ghostState::Chasing:
+		Chase(currentPlayerPos);
+		break;
+
+	case ghostState::Scattering:
+		Scatter(targetTile);
+		break;
+
+	case ghostState::Frightened:
 		Frightened();
-		std::cout << "Frightened" << std::endl;
+		break;
+
+	case ghostState::Respawning:
+		Respawn();
+		break;
+
+	default:
+		break;
 	}
-	else
+
+	if (hasLeftHouse)
 	{
-		if (hasLeftHouse) // If ghost has left ghost house
+		if (isFrightened)
+		{
+			currentState = ghostState::Frightened;
+			behaviourTimer = 0;  // Resets chase loop
+		}
+		else
 		{
 			// Switches periodically from chase to scatter
 			if (behaviourTimer < 100)
 			{
-				Chase(currentPlayerPos);
-				std::cout << "Chasing" << std::endl;
+				currentState = ghostState::Chasing;
 			}
 			else
 			{
-				Scatter(scatterTile);
-				std::cout << "Scattering" << std::endl;
+				currentState = ghostState::Scattering;
 			}
 		}
-		else
-		{
-			LeaveHouse();
-			// STAGGER LEAVING TIMES
-		}
+	}
+	else
+	{
+		currentState = ghostState::LeavingHouse;
 	}
 
-	if (behaviourTimer > 150) // Resets behaviour timer after chase-scatter loop
+	if (behaviourTimer > 125) // Resets behaviour timer after chase-scatter loop
 	{
-		behaviourTimer = 0;
+		ResetBehaviour();
 	}
 	behaviourTimer++;
+
+	if (isRespawning) // Stops ghost from still being frightened after respawning
+	{
+		respawnTimer--;
+
+		if (respawnTimer <= 0)
+		{
+			isRespawning = false;
+		}
+	}
 
 	Pathfinding();
 	Move();
@@ -238,7 +271,7 @@ void Ghosts::LeaveHouse()
 	}
 }
 
-void Ghosts::Chase(sf::Vector2f & currentPlayerPos)
+void Ghosts::Chase(sf::Vector2f& currentPlayerPos)
 {
 	targetPos = currentPlayerPos;
 
@@ -246,7 +279,7 @@ void Ghosts::Chase(sf::Vector2f & currentPlayerPos)
 	yDirVector = targetPos.y - ghostPos.y;
 }
 
-void Ghosts::Scatter(sf::Vector2f & targetTile)
+void Ghosts::Scatter(sf::Vector2f& targetTile)
 {
 	targetPos = targetTile;
 
@@ -266,6 +299,60 @@ void Ghosts::Frightened()
 	yDirVector = (rand() % 10) - (rand() % 5);
 }
 
+void Ghosts::Respawn()
+{
+	currentState = ghostState::Respawning;
+
+	ghostPos = { 400.0f, 440.0f };
+	hasLeftHouse = false;
+	SetFrightenedFalse();
+
+	respawnTimer = 50;
+	isRespawning = true;
+	isPlayerDead = false;
+}
+
+void Ghosts::PlayerCollision(sf::Vector2f& currentPlayerPos)
+{
+	if (currentPlayerPos == ghostPos)
+	{
+		if (isFrightened)
+		{
+			// Ghost dies
+			// Respawn -- Not frightened
+			// Add points
+			std::cout << "Ghost Dead" << std::endl;
+			Respawn();
+			points->AddPoints(ghostValue);
+		}
+		else
+		{
+			// Player dies -- Lose a life
+			// Respawn Player
+			// Respawn Ghosts -- Reset timer
+			std::cout << "Player Dead" << std::endl;
+			isPlayerDead = true;
+		}
+	}
+}
+
+void Ghosts::ResetBehaviour()
+{
+	respawnTimer = 0;
+	behaviourTimer = 0;
+}
+
+void Ghosts::SetFrightenedFalse()
+{
+	ghostColor = defaultColor;
+	isFrightened = false;
+}
+
+void Ghosts::SetFrightenedTrue()
+{
+	isFrightened = true;
+}
+
 sf::Vector2f Ghosts::GetGhostPos()
 {
 	return ghostPos;
@@ -281,13 +368,17 @@ bool Ghosts::GetHouse()
 	return hasLeftHouse;
 }
 
-void Ghosts::SetFrightenedFalse()
+bool Ghosts::GetFright()
 {
-	ghostColor = defaultColor;
-	isFrightened = false;
+	return isFrightened;
 }
 
-void Ghosts::SetFrightenedTrue()
+bool Ghosts::GetRespawn()
 {
-	isFrightened = true;
+	return isRespawning;
+}
+
+bool Ghosts::GetPlayerDeath()
+{
+	return isPlayerDead;
 }

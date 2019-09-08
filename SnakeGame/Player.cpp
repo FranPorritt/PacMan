@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player(float playerRadiusArg, sf::Color playerColorArg, sf::Vector2f playerPosArg) :
 	playerRadius(playerRadiusArg), playerColor(playerColorArg), playerPos(playerPosArg)
@@ -23,6 +24,14 @@ void Player::SetPosition(sf::Vector2f& newPlayerPos)
 	playerPos = newPlayerPos;
 }
 
+void Player::Update()
+{
+	if (playerLives < 0) // Less than 0, rather than or equal to, so player gets all 3 lives
+	{
+		isDead = true;
+	}
+}
+
 void Player::Move()
 {
 	if (((sf::Keyboard::isKeyPressed(sf::Keyboard::W)) || (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))) && (canMoveUp))
@@ -41,10 +50,10 @@ void Player::Move()
 	{
 		direction = EDirection::eRight;
 	}
-	/*else if (isDead)
+	else if (isDead)
 	{
 		direction = EDirection::eStop;
-	}*/
+	}
 
 	if ((!canMoveUp) && (direction == EDirection::eUp))
 	{
@@ -89,7 +98,42 @@ void Player::Move()
 	}
 }
 
+void Player::Respawn(sf::Vector2f& playerSpawn)
+{
+	playerLives--;
+
+	direction = EDirection::eStop;
+	playerPos = playerSpawn;
+}
+
 sf::Vector2f Player::GetPlayerPos()
 {
 	return playerPos;
+}
+
+bool Player::GetIsDead()
+{
+	return isDead;
+}
+
+void Player::DisplayLives(sf::RenderWindow& window)
+{
+	if (!font.loadFromFile("ka1.ttf"))
+	{
+		cout << "ERROR" << endl;
+	}
+
+	sf::Text livesText;
+	livesText.setFont(font);
+	livesText.setCharacterSize(20);
+	livesText.setPosition(700, 5);
+	livesText.setString("LIVES: " + to_string(playerLives));
+	livesText.setFillColor(sf::Color::White);
+
+	window.draw(livesText);
+}
+
+int Player::GetLives()
+{
+	return playerLives;
 }

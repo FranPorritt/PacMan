@@ -10,6 +10,8 @@ private:
 	static Points* instance;
 	Points();
 
+	sf::Font font;
+
 public:
 	static Points* getInstance();
 

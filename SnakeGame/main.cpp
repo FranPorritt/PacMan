@@ -6,8 +6,9 @@
 int main()
 {
 	srand(time(0));
-
-	sf::RenderWindow window(sf::VideoMode(820, 960), "Pac Man: Francesca Porritt");
+	const int screenWidth = 820;
+	const int screenHeight = 960;
+	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Pac Man: Francesca Porritt");
 	std::cout << "PacMan: Starting" << std::endl;
 
 	Game* game = new Game();
@@ -28,12 +29,19 @@ int main()
 		}
 		window.clear();
 
-		game->Update(window);
+		game->Update(window, screenWidth, screenHeight);
+
+		if (game->GetRestart())
+		{
+			game = new Game();
+		}
 
 		window.display();
 	}
 
 	std::cout << "PacMan: Finished" << std::endl;
+
+	delete game;
 
 	return 0;
 }
